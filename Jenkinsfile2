@@ -20,7 +20,7 @@ pipeline {
       steps {
       publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/Insure-Project/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
-    } */
+    } 
     
     stage('Docker Image Creation') {
       steps {
@@ -40,7 +40,7 @@ pipeline {
       steps {
         sh 'docker push siddharth195/demo5:latest'
             }
-    } 
+    } */
     stage('Deploy Application using Ansible') {
       steps {
         ansiblePlaybook become: true, credentialsId: 'sshid', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'deploy.yml', vaultTmpPath: ''
