@@ -5,7 +5,7 @@ pipeline {
     stage('CheckOut') {
       steps {
         echo 'Checkout the source code from GitHub'
-        git branch: 'main', url: 'https://github.com/siddharth389/InsureMe-20Mar.git'
+        git branch: 'main', url: 'https://github.com/Mimoh6/InsureMe-20Mar.git'
             }
     }
     
@@ -24,7 +24,7 @@ pipeline {
     
     stage('Docker Image Creation') {
       steps {
-        sh 'docker build -t siddharth195/insurance:latest .'
+        sh 'docker build -t mimoh6/insurance:latest .'
             }
     }
      stage('Docker-Login') {
@@ -38,12 +38,12 @@ pipeline {
 
     stage('Push Image to DockerHub') {
       steps {
-        sh 'docker push siddharth195/insurance:latest'
+        sh 'docker push mimoh6/insurance:latest'
             }
     } 
     stage('Deploy Application using Ansible') {
       steps {
-        ansiblePlaybook become: true, credentialsId: 'sshid', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'deploy.yml', vaultTmpPath: ''
+        ansiblePlaybook become: true, credentialsId: 'sshid', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'deploy.yaml', vaultTmpPath: ''
             }
     }
 
